@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const auth = require('../middleware/auth.middleware');
-const { createBabyCry, getBabyCries } = require('../controllers/babyCry.controller');
+const { createBabyCry, getBabyCries, analyzeLatestBabyCry } = require('../controllers/babyCry.controller');
 
 // Ensure uploads folder exists
 const uploadDir = 'uploads/';
@@ -26,5 +26,6 @@ router.post('/', auth, upload.single('audio'), createBabyCry);
 
 // GET /api/baby-cry?babyId=xxx
 router.get('/', auth, getBabyCries);
+router.get('/analyze-latest', auth, analyzeLatestBabyCry);
 
 module.exports = router;
